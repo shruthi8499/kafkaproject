@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dead Letter Queue Management</title>
+</head>
+<body>
+    <h2>Republish Message to Original Topic</h2>
+    <form id="republish-form">
+        <label for="originalTopic">Original Topic:</label>
+        <input type="text" id="originalTopic" name="originalTopic" required><br><br>
+        <label for="originalMessage">Original Message:</label>
+        <input type="text" id="originalMessage" name="originalMessage" required><br><br>
+        <label for="failureReason">Failure Reason:</label>
+        <input type="text" id="failureReason" name="failureReason" required><br><br>
+        <button type="button" onclick="republishMessage()">Republish</button>
+    </form>
+
+    <script>
+        function republishMessage() {
+            var originalTopic = document.getElementById("originalTopic").value;
+            var originalMessage = document.getElementById("originalMessage").value;
+            var failureReason = document.getElementById("failureReason").value;
+
+            var requestBody = JSON.stringify({
+                originalTopic: originalTopic,
+                originalMessage: originalMessage,
+                failureReason: failureReason
+            });
+
+            fetch('http://localhost:8080/admin/dead-letter/republish', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: requestBody
+            })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
