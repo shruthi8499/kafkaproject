@@ -1,0 +1,8 @@
+
+###kafka-console-producer.bat --bootstrap-server localhost:9092 --topic my-topic
+[2023-08-28 16:10:02] welcome
+[2023-08-28 16:21:59] welcome to kafka project
+[2023-08-28 16:22:21] welcome to kafka project
+[2023-08-28 16:22:46] message recovery system
+[2023-08-28 16:23:05] message recovery system
+[2023-08-28 16:23:42] recovery system
